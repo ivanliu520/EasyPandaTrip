@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import {
   QUESTIONS,
@@ -13,14 +13,21 @@ import {
   type ChecklistAnswers,
 } from "@/lib/checklist";
 
-export default function ReadyPage() {
-  const [answers, setAnswers] = useState<ChecklistAnswers>(defaultAnswers());
-  const [mounted, setMounted] = useState(false);
+// Client-only flag without setState-in-effect: false during SSR/hydration, true after
+function useMounted() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
 
-  useEffect(() => {
-    setMounted(true);
-    setAnswers(loadAnswers());
-  }, []);
+export default function ReadyPage() {
+  const mounted = useMounted();
+  // localStorage is read lazily during client hydration; while !mounted we render a loading state
+  const [answers, setAnswers] = useState<ChecklistAnswers>(() =>
+    typeof window === "undefined" ? defaultAnswers() : loadAnswers()
+  );
 
   function toggle(key: keyof ChecklistAnswers) {
     const newAnswers = { ...answers, [key]: !answers[key] };
@@ -40,7 +47,7 @@ export default function ReadyPage() {
           🎯 Get Ready for China
         </h1>
         <p className="text-[var(--text-muted)] max-w-xl mx-auto">
-          Answer a few quick questions. We'll tell you exactly what you need
+          Answer a few quick questions. We&apos;ll tell you exactly what you need
           before you land in China.
         </p>
       </div>

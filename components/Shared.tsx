@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import type { GuideFrontmatter } from "@/lib/types";
 import Link from "next/link";
 
@@ -42,12 +42,16 @@ export function VerificationBadge({
   status?: "verified" | "stale" | "outdated" | "draft";
   compact?: boolean;
 }) {
-  const [daysAgo, setDaysAgo] = useState<number | null>(null);
-
-  useEffect(() => {
-    const parsed = new Date(date);
-    setDaysAgo(Math.floor((Date.now() - parsed.getTime()) / (1000 * 60 * 60 * 24)));
-  }, [date]);
+  // Read Date.now() only on the client (server snapshot = null) to keep prerender stable
+  const now = useSyncExternalStore(
+    () => () => {},
+    () => Date.now(),
+    () => null
+  );
+  const daysAgo =
+    now === null
+      ? null
+      : Math.floor((now - new Date(date).getTime()) / (1000 * 60 * 60 * 24));
 
   const config = {
     verified: {

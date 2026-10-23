@@ -27,7 +27,7 @@ export default function ProblemsPage() {
     <div className="container-page py-12 md:py-16">
       <h1 className="text-3xl md:text-4xl font-bold mb-3">Fix a Problem</h1>
       <p className="text-[var(--text-muted)] mb-10">
-        Something went wrong? Tell us what's happening and we'll help you fix it
+        Something went wrong? Tell us what&apos;s happening and we&apos;ll help you fix it
         step by step.
       </p>
 

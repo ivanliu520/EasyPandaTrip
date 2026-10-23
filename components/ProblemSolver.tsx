@@ -136,7 +136,7 @@ export function ProblemSolver({ problem, relatedGuides, sources }: Props) {
               {selectedAnswer.backup && (
                 <div className="bg-orange-500/5 border border-orange-500/20 rounded-xl p-5 mb-4">
                   <h3 className="font-semibold mb-2 text-orange-600">
-                    🔄 If that doesn't work
+                    🔄 If that doesn&apos;t work
                   </h3>
                   <p className="text-[var(--foreground)] leading-relaxed">
                     {selectedAnswer.backup}

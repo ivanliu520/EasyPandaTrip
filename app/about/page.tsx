@@ -12,8 +12,8 @@ export default function AboutPage() {
       <section className="mb-10">
         <h2 className="text-xl font-bold mb-3">Why this exists</h2>
         <p className="text-[var(--text-muted)] mb-3">
-          China is an amazing country — but it's also full of things that trip
-          up first-time visitors. Google doesn't work. Your Visa card might get
+          China is an amazing country — but it&apos;s also full of things that trip
+          up first-time visitors. Google doesn&apos;t work. Your Visa card might get
           declined. The subway has 20+ lines. You need Alipay or WeChat Pay to
           buy almost anything.
         </p>
@@ -26,7 +26,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mb-10">
-        <h2 className="text-xl font-bold mb-3">How we're different</h2>
+        <h2 className="text-xl font-bold mb-3">How we&apos;re different</h2>
         <ul className="space-y-3">
           {[
             ["Action-first", "Not long articles. Short, specific steps. Do this, then that."],
@@ -45,12 +45,12 @@ export default function AboutPage() {
       <section className="mb-10">
         <h2 className="text-xl font-bold mb-3">Our content is verified</h2>
         <p className="text-[var(--text-muted)] mb-3">
-          China's digital ecosystem changes fast. Alipay updates its foreign card
-          support. Metro payment rules shift. App stores change what's available.
+          China&apos;s digital ecosystem changes fast. Alipay updates its foreign card
+          support. Metro payment rules shift. App stores change what&apos;s available.
         </p>
         <p className="text-[var(--text-muted)]">
           Every guide on this site shows a <strong>last verified date</strong> and links
-          to the <strong>official sources</strong> we used. If you spot something that's
+          to the <strong>official sources</strong> we used. If you spot something that&apos;s
           out of date — please let us know.
         </p>
       </section>
@@ -59,7 +59,7 @@ export default function AboutPage() {
         <h2 className="text-xl font-bold mb-3">A few words of caution</h2>
         <ul className="text-[var(--text-muted)] space-y-2">
           <li>• Information here is for reference only. Always check official sources for critical decisions like visa requirements.</li>
-          <li>• We're not responsible if something changes after publication — the China digital ecosystem moves fast.</li>
+          <li>• We&apos;re not responsible if something changes after publication — the China digital ecosystem moves fast.</li>
           <li>• In emergencies, dial <strong>110</strong> (police) or <strong>120</strong> (ambulance). Hotel staff can help with translation.</li>
         </ul>
       </section>
