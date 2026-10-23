@@ -138,24 +138,39 @@ export interface SearchableItem {
   title: string;
   summary: string;
   category?: string;
+  keywords?: string[];
   url: string;
 }
 
 export function getAllSearchable(): SearchableItem[] {
-  const guides = getAllGuides().map((g) => ({
-    type: "guide" as const,
-    slug: g.slug,
-    title: g.frontmatter.title,
-    summary: g.frontmatter.summary,
-    category: g.frontmatter.category,
-    url: `/guides/${g.slug}`,
-  }));
+  const guides = getAllGuides().map((g) => {
+    const fm = g.frontmatter;
+    // Reuse existing frontmatter fields as search keywords (no new content written).
+    // Kept as short separate phrases so Fuse scores each one without position penalty.
+    const keywords = [
+      ...(fm.prerequisites ?? []).map((p) => p.item),
+      ...(fm.steps ?? []).map((s) => s.title),
+      ...(fm.backup_options ?? []).map((b) => b.condition),
+      ...(fm.backup_options ?? []).map((b) => b.action),
+      fm.expected_result ?? "",
+    ].filter(Boolean);
+    return {
+      type: "guide" as const,
+      slug: g.slug,
+      title: fm.title,
+      summary: fm.summary,
+      category: fm.category,
+      keywords,
+      url: `/guides/${g.slug}`,
+    };
+  });
   const problems = getAllProblems().map((p) => ({
     type: "problem" as const,
     slug: p.slug,
     title: p.frontmatter.title,
     summary: p.frontmatter.summary,
     category: p.frontmatter.category,
+    keywords: p.frontmatter.trigger_keywords ?? [],
     url: `/problems/${p.slug}`,
   }));
   const cities = getAllCities().map((c) => ({
@@ -163,6 +178,7 @@ export function getAllSearchable(): SearchableItem[] {
     slug: c.slug,
     title: c.frontmatter.title,
     summary: c.frontmatter.summary,
+    keywords: c.frontmatter.highlights ?? [],
     url: `/cities/${c.slug}`,
   }));
   return [...guides, ...problems, ...cities];

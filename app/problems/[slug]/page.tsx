@@ -4,6 +4,7 @@ import { getProblemBySlug, getAllGuides, getAllProblems } from "@/lib/content";
 import { PROBLEM_CATEGORY_INFO } from "@/lib/types";
 import { VerificationBadge, SeverityBadge } from "@/components/Shared";
 import { ProblemSolver } from "@/components/ProblemSolver";
+import { Markdown } from "@/components/Markdown";
 import type { Metadata } from "next";
 
 interface Params {
@@ -77,7 +78,13 @@ export default async function ProblemPage({ params }: Params) {
         problem={problem}
         relatedGuides={relatedGuides}
         sources={frontmatter.sources || []}
-      />
+      >
+        {problem.content && (
+          <section className="mb-10">
+            <Markdown content={problem.content} />
+          </section>
+        )}
+      </ProblemSolver>
     </article>
   );
 }

@@ -11,6 +11,12 @@ const TYPE_LABEL: Record<SearchableItem["type"], { label: string; icon: string; 
   city: { label: "City", icon: "🏙", color: "text-green-600 bg-green-500/10" },
 };
 
+const SECTION_LABEL: Record<SearchableItem["type"], string> = {
+  guide: "Guides",
+  problem: "Problems",
+  city: "Cities",
+};
+
 const SUGGESTIONS = [
   "how to use alipay",
   "internet in china",
@@ -45,6 +51,23 @@ export function SearchClient({ items }: { items: SearchableItem[] }) {
     }
     return g;
   }, [filtered]);
+
+  // Render the section whose best match ranks highest first, so an error
+  // query like "alipay doesn't work" leads with the matching Problem
+  const sectionOrder = useMemo(() => {
+    const types: SearchableItem["type"][] = ["guide", "problem", "city"];
+    const rank = new Map<string, number>();
+    filtered.forEach((item, i) => rank.set(`${item.type}:${item.slug}`, i));
+    const bestRank = (type: SearchableItem["type"]) =>
+      Math.min(
+        ...grouped[type].map(
+          (item) => rank.get(`${item.type}:${item.slug}`) ?? Infinity
+        )
+      );
+    return types
+      .filter((type) => grouped[type].length > 0)
+      .sort((a, b) => bestRank(a) - bestRank(b));
+  }, [grouped, filtered]);
 
   return (
     <>
@@ -104,42 +127,18 @@ export function SearchClient({ items }: { items: SearchableItem[] }) {
           </div>
         ) : (
           <>
-            {grouped.guide.length > 0 && (
-              <section>
+            {sectionOrder.map((type) => (
+              <section key={type}>
                 <h2 className="text-sm font-medium uppercase tracking-wide text-[var(--text-muted)] mb-3">
-                  Guides ({grouped.guide.length})
+                  {SECTION_LABEL[type]} ({grouped[type].length})
                 </h2>
                 <div className="space-y-2">
-                  {grouped.guide.map((item) => (
+                  {grouped[type].map((item) => (
                     <LinkItem key={item.slug} item={item} />
                   ))}
                 </div>
               </section>
-            )}
-            {grouped.problem.length > 0 && (
-              <section>
-                <h2 className="text-sm font-medium uppercase tracking-wide text-[var(--text-muted)] mb-3">
-                  Problems ({grouped.problem.length})
-                </h2>
-                <div className="space-y-2">
-                  {grouped.problem.map((item) => (
-                    <LinkItem key={item.slug} item={item} />
-                  ))}
-                </div>
-              </section>
-            )}
-            {grouped.city.length > 0 && (
-              <section>
-                <h2 className="text-sm font-medium uppercase tracking-wide text-[var(--text-muted)] mb-3">
-                  Cities ({grouped.city.length})
-                </h2>
-                <div className="space-y-2">
-                  {grouped.city.map((item) => (
-                    <LinkItem key={item.slug} item={item} />
-                  ))}
-                </div>
-              </section>
-            )}
+            ))}
           </>
         )}
       </div>

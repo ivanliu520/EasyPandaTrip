@@ -11,9 +11,15 @@ interface Props {
   };
   relatedGuides: { slug: string; title: string }[];
   sources: Source[];
+  children?: React.ReactNode;
 }
 
-export function ProblemSolver({ problem, relatedGuides, sources }: Props) {
+export function ProblemSolver({
+  problem,
+  relatedGuides,
+  sources,
+  children,
+}: Props) {
   const diagnosis = problem.frontmatter.diagnosis;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<{
@@ -68,6 +74,16 @@ export function ProblemSolver({ problem, relatedGuides, sources }: Props) {
     setSelectedAnswer(null);
     setHistory([]);
   }
+
+  // Advance to the next diagnosis node after the current advice was applied
+  function handleContinue() {
+    if (currentIndex + 1 >= diagnosis.length) return;
+    setHistory([...history, currentIndex]);
+    setCurrentIndex(currentIndex + 1);
+    setSelectedAnswer(null);
+  }
+
+  const hasNextStep = currentIndex + 1 < diagnosis.length;
 
   return (
     <>
@@ -155,7 +171,15 @@ export function ProblemSolver({ problem, relatedGuides, sources }: Props) {
                 </div>
               )}
 
-              <div className="flex gap-3 mt-6">
+              <div className="flex flex-wrap gap-3 mt-6">
+                {hasNextStep && (
+                  <button
+                    onClick={handleContinue}
+                    className="px-4 py-2 rounded-lg bg-[var(--brand-primary)] text-white text-sm font-medium hover:bg-[var(--brand-primary-dark)] transition"
+                  >
+                    Still not solved? Next question →
+                  </button>
+                )}
                 <button
                   onClick={handleReset}
                   className="px-4 py-2 rounded-lg border border-[var(--border)] text-sm hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition"
@@ -173,6 +197,9 @@ export function ProblemSolver({ problem, relatedGuides, sources }: Props) {
           )}
         </div>
       </section>
+
+      {/* Long-form guidance from the problem markdown */}
+      {children}
 
       {/* Related guides */}
       {relatedGuides.length > 0 && (
