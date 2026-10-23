@@ -1,0 +1,53 @@
+---
+slug: "beijing"
+title: "Beijing"
+summary: "China's capital city. 3,000+ years of history, iconic landmarks, imperial palaces, and modern development. Population: ~22 million."
+highlights:
+  - "Forbidden City (Imperial Palace)"
+  - "Great Wall (Mutianyu section is best for tourists)"
+  - "Tiananmen Square"
+  - "Summer Palace"
+  - "Hutong neighborhoods"
+  - "798 Art District"
+transport_notes: "Beijing Capital International Airport (PEK) is 25km northeast. Beijing Daxing International (PKX) opened 2019, further south. Both have airport express trains to the city center. Metro: 20+ lines, ¥3-10 fare. DiDi works everywhere."
+payment_notes: "All major payment methods work. International cards accepted at luxury hotels and high-end restaurants. Smaller vendors prefer Alipay/WeChat Pay."
+last_verified: "2026-09-15"
+status: "verified"
+related_guides:
+  - "use-alipay-china"
+  - "use-didi-in-china"
+  - "use-metro-in-china"
+related_problems:
+  - "internet-not-working"
+---
+
+# Beijing — Quick Practical Guide
+
+## Getting Around
+
+- **From Airport to City**: Airport Express Train ¥25-30 (~$3.5-$4.20), 20-45 minutes to central stations
+- **Metro**: Best for tourists. Clean, cheap, easy to use. Buy a transport card or use Alipay QR codes
+- **DiDi**: Widely available. Fares start around ¥13 (~$1.80) base rate
+- **Walking**: Excellent for hutong neighborhoods and Wangfujing
+
+## Must-See Tips
+
+| Attraction | Time Needed | Tip |
+|------------|-------------|-----|
+| Forbidden City | Half day | Book tickets online in advance, entrance via south gate only |
+| Great Wall (Mutianyu) | Full day | Take the cable car up, toboggan slide down. 1.5hr drive from city |
+| Tiananmen Square | 1-2 hrs | Free, but security check required |
+| Summer Palace | 3-4 hrs | Boat on Kunming Lake recommended |
+
+## Food Notes
+
+- Find **Peking Duck** at Quanjude or Dadong — expect ¥150-300/person
+- Street food is safe at night markets (Wangfujing, Guijie)
+- Dumpling chains: Mr. Li (便宜坊) is a reliable budget option
+
+## Beijing-Specific Tips
+
+- **Smog can be an issue** — check air quality before outdoor activities
+- **Pedicabs** near tourist spots may overcharge — negotiate before getting in
+- **Hutongs** are being renovated — some traditional ones remain in areas like Shichahai
+- **Summer (Jun-Aug)** is hot (30-35°C) and humid. **Winter (Dec-Feb)** is cold (-5 to 5°C)
