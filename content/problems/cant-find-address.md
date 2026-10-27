@@ -13,6 +13,10 @@ trigger_keywords:
   - "wrong place"
 related_guides:
   - "use-didi-in-china"
+sources:
+  - name: "National Immigration Administration — Emergency Telephone Numbers"
+    url: "https://www.nia.gov.cn/2022cn/files/basic-html/page44.html"
+    type: "official"
 diagnosis:
   - slug: "step-1"
     question: "Who's having trouble finding whom?"
@@ -24,7 +28,7 @@ diagnosis:
         recommended_action: "Open Gaode Maps, type your destination in English, get the Chinese name, copy-paste it to the driver via DiDi chat. Use specific landmarks: 'It's near the big McDonald's on X street'."
         backup_action: "Show the driver a photo of the building from your phone. Most hotels have distinctive exteriors."
       - label: "I can't find MY hotel (on foot)"
-        recommended_action: "Open Gaode Maps, enter your hotel name, and follow the walking directions. Gaode works offline if you downloaded the city map."
+        recommended_action: "Open Gaode Maps, enter your hotel name, and follow the walking directions. If you have downloaded the relevant city map in Gaode Maps, you may be able to use the map offline."
         backup_action: "Call the hotel front desk — most larger hotels have English-speaking staff. Ask them to give you detailed directions or speak to a taxi driver on your behalf."
       - label: "GPS is showing the wrong place"
         recommended_action: "This happens sometimes with English searches. Search for the hotel's Chinese name (copy from booking confirmation). Or search for the Chinese phone number in Gaode Maps."
@@ -34,12 +38,12 @@ diagnosis:
     options:
       - label: "Yes (harder conditions)"
         recommended_action: "Go to the nearest major building — malls, office towers, large hotels — and ask staff. They can help you navigate or call a taxi."
-        emergency_option: "Go to the police station — dial 110 on your phone (Chinese police number). They have translation support."
+        emergency_option: "Go to the police station or dial 110 (Chinese police). In major cities, police can assist tourists."
       - label: "No"
         recommended_action: "Use Gaode Maps walking navigation. Streets in most major cities are well-signed."
 ---
 
-# Address Issues — Survival Checklist
+## Address Issues — Survival Checklist
 
 ## Before you arrive
 
@@ -59,4 +63,4 @@ diagnosis:
 
 ## Police Number (Emergency)
 
-If you're truly stuck and can't communicate, dial **110**. Chinese police have access to translation services and will help tourists.
+If you're truly stuck and can't communicate, dial **110** (police). In major cities, police can assist tourists and may help arrange basic communication support.

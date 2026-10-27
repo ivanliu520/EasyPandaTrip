@@ -9,7 +9,7 @@ highlights:
   - "French Concession / Former French Settlement"
   - "Nanjing Road shopping"
   - "Tianzifang art district"
-transport_notes: "Pudong International Airport (PVG) and Hongqiao (SHA) both serve Shanghai. PVG is 40km from city — Maglev train (world's fastest) takes 8 minutes to Longyang Road station for ¥50. Metro: 18+ lines, ¥3-12 fare. DiDi and taxis abundant."
+transport_notes: "Pudong International Airport (PVG) and Hongqiao (SHA) both serve Shanghai. PVG is 40km from city — Maglev train (one of the world's fastest commercial trains) takes 8 minutes to Longyang Road station for ¥50. Metro: 21 lines, fares from ¥3 (Airport Link Line is priced separately). Eligible contactless bank cards (UnionPay, Visa, Mastercard, JCB, Amex) are accepted at metro gates. DiDi and taxis abundant."
 payment_notes: "Very international. Most restaurants accept international cards. Alipay/WeChat Pay universal. Foreigners often find Shanghai payment easier than other Chinese cities."
 last_verified: "2026-09-15"
 status: "verified"
@@ -21,7 +21,7 @@ related_problems:
   - "cant-find-address"
 ---
 
-# Shanghai — Quick Practical Guide
+## Shanghai — Quick Practical Guide
 
 ## Getting Around
 

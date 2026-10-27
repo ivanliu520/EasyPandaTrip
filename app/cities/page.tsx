@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllCities } from "@/lib/content";
 
 export const metadata = {
-  title: "Cities — China Travel Guide",
+  title: "Cities",
   description: "Practical guides for Beijing and Shanghai — transport, payment, and local tips.",
 };
 

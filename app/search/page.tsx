@@ -2,7 +2,7 @@ import { getAllSearchable } from "@/lib/content";
 import { SearchClient } from "@/components/SearchClient";
 
 export const metadata = {
-  title: "Search — China Travel Guide",
+  title: "Search",
   description:
     "Search guides, problem solvers, and city tips for China travel.",
 };

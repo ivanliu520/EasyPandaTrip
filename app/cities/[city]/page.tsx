@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const cityData = getCityBySlug(city);
   if (!cityData) return { title: "Not Found" };
   return {
-    title: `${cityData.frontmatter.title} — China Travel Guide`,
+    title: cityData.frontmatter.title,
     description: cityData.frontmatter.summary,
     alternates: { canonical: `/cities/${cityData.slug}` },
   };

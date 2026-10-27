@@ -1,7 +1,7 @@
 ---
 slug: "use-alipay-china"
-title: "How to Use Alipay in China (Alipay+)"
-summary: "Download, register, and use Alipay's international version. Bind foreign cards, top up, and pay anywhere in China."
+title: "How to Use Alipay in China"
+summary: "Download, register, and use Alipay's international version. Bind foreign cards, top up, and pay widely across China."
 category: "pay"
 city_scope: "all"
 target_audience: [first-time]
@@ -9,25 +9,25 @@ estimated_minutes: 10
 last_verified: "2026-09-15"
 status: "verified"
 sources:
-  - name: "Alipay+ Official Website"
-    url: "https://www.alipayplus.com"
+  - name: "Alipay+ / Ant International"
+    url: "https://www.alipayplus.com/sg/pay-in-the-chinese-mainland"
     type: "official"
-  - name: "Alipay Help Center"
-    url: "https://render.alipay.com/c/topic/alipay-plus"
+  - name: "Alipay Help Center — Register an Alipay account overseas"
+    url: "https://help.alipay.com/lab/help_detail.htm?help_id=560327"
     type: "official"
 prerequisites:
   - item: "Passport"
     required: true
     note: "Must be valid and not expired"
-  - item: "Chinese phone number"
+  - item: "Mobile phone number that can receive SMS (Chinese or international)"
     required: true
-    note: "You can get one at the airport or use your home carrier's China roaming"
+    note: "Use a phone number that can receive SMS verification codes. A Chinese number is not required."
   - item: "International credit card (Visa/Mastercard/JCB)"
     required: true
 steps:
   - order: 1
-    title: "Download Alipay+ App"
-    instruction: "Search \"Alipay\" in your app store and download the app with the blue logo. Make sure it shows \"Alipay+\" in the description — this is the international version."
+    title: "Download Alipay app — International Version"
+    instruction: "Search \"Alipay\" in your app store and download the app with the blue logo. After signing up, choose \"International Version\" — the version tailored for overseas travellers."
     visual_cue: "The app icon is blue with a white stylized '支' character"
   - order: 2
     title: "Register with your phone number"
@@ -36,10 +36,9 @@ steps:
     title: "Complete international identity verification"
     instruction: "Go to Me → Account Settings → Identity Verification. Select \"International User Verification\" and follow the prompts. You'll need to take photos of your passport's main page and a selfie."
     failure_guidance: "If verification fails, make sure your passport photo is clear and all corners are visible. Retry in better lighting."
-    linked_problem: "alipay-verification-failed"
   - order: 4
     title: "Bind your international card"
-    instruction: "After verification, go to Me → Bank Cards → Add Card. Enter your Visa/Mastercard/JCB card details. The app will verify with a small test charge (usually 1 yuan) that will be refunded."
+    instruction: "After verification, go to Me → Bank Cards → Add Card. Enter your Visa/Mastercard/JCB card details. The app may verify your card with a small temporary authorization; if one appears, it is typically reversed automatically."
   - order: 5
     title: "Top up your Alipay balance (recommended)"
     instruction: "While you can pay directly from your bound card, topping up your Alipay balance with yuan often gives better exchange rates. Go to Home → Top Up and follow the instructions."
@@ -63,14 +62,14 @@ related_guides:
   - "use-wechat-pay-china"
 ---
 
-# Using Alipay (Alipay+) in China
+## Using Alipay in China
 
-Alipay is the dominant payment method in China. The international version called **Alipay+** works with foreign phone numbers and international credit cards — you don't need a Chinese bank account.
+Alipay is the dominant payment method in China. Alipay's international version works with foreign phone numbers and international credit cards — you don't need a Chinese bank account.
 
 ## Before You Start
 
 Make sure you have your passport ready, a phone that can receive SMS in China (either a Chinese SIM or roaming), and an international Visa/Mastercard.
 
-## Is Alipay+ right for you?
+## Is Alipay right for you?
 
-If you're staying more than a week and want the convenience of paying almost everywhere without carrying cash, yes. Alipay works in chain stores, restaurants, taxis, convenience stores, and even street vendors. For very short trips, consider a tourist eSIM plan instead.
+If you're staying more than a week and want the convenience of paying almost everywhere without carrying cash, yes. Alipay is widely accepted across many everyday merchant types in China, though acceptance can vary by merchant. For very short trips, consider a tourist eSIM plan instead.

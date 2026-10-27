@@ -15,8 +15,8 @@ related_guides:
   - "use-alipay-china"
   - "use-wechat-pay-china"
 sources:
-  - name: "Alipay Help Center"
-    url: "https://render.alipay.com/c/topic/alipay-plus"
+  - name: "Alipay Help Center — International Credit Card Payment Error Codes"
+    url: "https://help.alipay.com/lab/help_detail.htm?help_id=256323"
     type: "official"
 diagnosis:
   - slug: "step-1"
@@ -42,10 +42,10 @@ diagnosis:
       - label: "No, still having trouble"
         recommended_action: "Contact Alipay support within the app: Me → Settings → Help & Feedback. Or try the emergency options below."
         backup_action: "Switch entirely to WeChat Pay for now."
-        emergency_option: "Find an ATM and withdraw yuan cash. Bank of China ATMs usually accept international cards."
+        emergency_option: "Find an ATM and withdraw yuan cash. Major state-owned bank ATMs (such as Bank of China) are the most likely to accept international cards."
 ---
 
-# Alipay Payment Failed — Troubleshooting
+## Alipay Payment Failed — Troubleshooting
 
 Payment failures are the #1 pain point for foreign users. Most issues are one of these four categories:
 
@@ -67,6 +67,6 @@ This usually means you scanned an Alipay QR code but your payment default is set
 
 ## Emergency: No digital payments working?
 
-1. **Find an ATM** — Bank of China, Industrial and Commercial Bank of China (ICBC), and Agricultural Bank ATMs accept international Visa/Mastercard
-2. Look for ATMs marked with PLUS, CIRRUS, or UnionPay logos
-3. Daily withdrawal limits: usually ¥2,000-5,000 (about $280-$700)
+1. **Find an ATM** — Some Chinese ATMs accept international cards. Look for ATMs marked with PLUS, CIRRUS, or UnionPay logos. Bank of China and other major state-owned bank ATMs are the most likely to accept international cards.
+2. Availability and daily withdrawal limits vary by bank, card network, and ATM — check the on-screen prompts before proceeding.
+3. If the ATM rejects your card, try a different bank's ATM or ask your hotel for help.

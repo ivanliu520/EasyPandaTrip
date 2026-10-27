@@ -9,45 +9,42 @@ estimated_minutes: 8
 last_verified: "2026-09-15"
 status: "verified"
 sources:
-  - name: "WeChat Pay International"
-    url: "https://pay.weixin.qq.com/intl/"
+  - name: "WeChat Help Center — Guide to Add and Use International Cards with Weixin Pay"
+    url: "https://help.wechat.com/cgi-bin/micromsg-bin/oshelpcenter?id=2307252mur7f2307257zfyfe&lang=en&opcode=2"
     type: "official"
 prerequisites:
-  - item: "WeChat / WeChat International App"
+  - item: "WeChat app"
+    required: true
+  - item: "Mobile phone number that can receive SMS (Chinese or international)"
     required: true
   - item: "International Visa/Mastercard"
     required: true
 steps:
   - order: 1
-    title: "Download WeChat (International version)"
-    instruction: "Download WeChat International from your app store. If you already have regular WeChat, it works too — but the international version may have better support for foreign users."
+    title: "Download WeChat"
+    instruction: "Download WeChat from your app store. It is the same app worldwide — there is no separate international version. If you already have WeChat installed, you can use it as-is."
   - order: 2
     title: "Register an account"
     instruction: "Sign up with your phone number. You don't need a Chinese number — your home number works fine. You'll need to verify with an SMS code."
   - order: 3
     title: "Open the Wallet section"
-    instruction: "In WeChat, tap Me → Service (or Wallet). If you don't see Service, it may be hidden — tap Me → Settings → General → Discover Page Settings and enable \"WeChat Pay\"."
+    instruction: "In WeChat, tap Me → Pay and Services → Wallet. If \"Pay and Services\" is not visible, the available options can vary by account region and app version; WeChat's current official documentation does not specify a universal manual toggle. Once you are in Wallet, tap Bank Cards → Add a Bank Card and follow the prompts (you'll verify your identity, e.g. with your passport, during setup)."
   - order: 4
     title: "Add your international card"
-    instruction: "Tap Add Card, enter your Visa or Mastercard details. WeChat will run a small test authorization. Enter the verification code that appears on your card statement."
+    instruction: "Tap Add Card and enter your Visa or Mastercard details. WeChat will send a verification SMS to the mobile number registered with your bank; enter that code to confirm and link the card."
   - order: 5
     title: "Pay with QR codes or the Pay button"
     instruction: "To pay, tap \"+\" in the top-right → Scan to scan a shop's QR code, or tap \"Pay\" to show your QR code for the cashier to scan."
     visual_cue: "WeChat Pay QR codes are typically green with a white logo"
-  - order: 6
-    title: "Send money to friends (useful for splitting bills)"
-    instruction: "WeChat Pay lets you easily send money to other WeChat contacts if you need to split a bill or borrow yuan."
 expected_result: "You can use WeChat Pay as a second payment option alongside Alipay for broader merchant coverage."
 backup_options:
   - condition: "WeChat Pay card binding fails"
     action: "Use Alipay instead, or pay with cash from an ATM"
-common_problems:
-  - "alipay-payment-failed"
 related_guides:
   - "use-alipay-china"
 ---
 
-# WeChat Pay for Foreigners
+## WeChat Pay for Foreigners
 
 WeChat Pay is the second major payment network in China. In many places (especially smaller shops and private vendors), it's more widely accepted than Alipay. Having both Alipay and WeChat Pay gives you the best coverage.
 

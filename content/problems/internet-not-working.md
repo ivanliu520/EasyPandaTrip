@@ -27,25 +27,25 @@ diagnosis:
         recommended_action: "Some hotel/cafe WiFi requires accepting terms in a browser. Open Safari/Chrome and see if a login page appears. Accept terms if needed."
         backup_action: "If no login page appears, the router may be down. Ask staff: 'WiFi down?' or 'WiFi bù xíng?' (WiFi不行)."
       - label: "VPN suddenly stopped working"
-        recommended_action: "VPN servers get blocked sometimes. Disconnect and reconnect — it may switch to a different server. If still down, switch to your second backup VPN."
+        recommended_action: "VPN connections can be disrupted or stop working from time to time. Disconnect and reconnect — it may switch to a different server. If still down, switch to your second backup VPN."
         backup_action: "Wait 10-15 minutes — blocks are often temporary. Avoid using one VPN app exclusively."
         emergency_option: "Use hotel WiFi which may have different routing than mobile data, or download maps for offline use."
   - slug: "step-2"
     question: "What type of internet do you need access to right now?"
     options:
       - label: "Blocked sites (Google, Gmail, etc.)"
-        recommended_action: "This definitely needs a VPN. Check if your VPN is connected. If it's red/disconnected, tap 'Connect'."
+        recommended_action: "You'll need a working VPN for this. Check if your VPN is connected. If it's red/disconnected, tap 'Connect'."
       - label: "Local services (Alipay, WeChat, maps)"
         recommended_action: "These work without VPN. If they don't load, your underlying connection is broken — go back to Step 1."
       - label: "Just need to send a message"
         recommended_action: "WeChat works without VPN. If WeChat isn't loading, your mobile data or WiFi has the problem."
 ---
 
-# Internet Not Working — Quick Fixes
+## Internet Not Working — Quick Fixes
 
 ## The Most Common Issue: VPN Suddenly Stops
 
-China actively blocks VPN servers. It's not if, but when:
+VPN connections can be disrupted or stop working from time to time:
 
 1. **First fix**: Disconnect and reconnect your VPN — it may auto-switch to a fresh server
 2. **Second fix**: Restart your phone — this refreshes all connections
@@ -54,10 +54,10 @@ China actively blocks VPN servers. It's not if, but when:
 ## eSIM Tips
 
 - If you bought an eSIM before travel, make sure it's **activated while you still have home internet** — once in China, you might not be able to access the activation page
-- eSIMs from Airalo/Nomad/aloSIM generally work well across all of China
+- International eSIMs generally work well across most of China
 
 ## If Absolutely Nothing Works
 
 1. Head to a major hotel front desk — they almost always have WiFi even if their "public" WiFi isn't working well
-2. Find a Starbucks — their WiFi is reliable
+2. Starbucks and other major coffee chains may have WiFi available, but availability and reliability vary by location
 3. **Download Gaode Maps offline** — this works without internet and saves you even if everything else fails

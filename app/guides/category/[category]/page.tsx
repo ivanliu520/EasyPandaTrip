@@ -12,6 +12,18 @@ export function generateStaticParams() {
   return Object.keys(CATEGORY_INFO).map((category) => ({ category }));
 }
 
+export async function generateMetadata({ params }: Params) {
+  const { category } = await params;
+  const slug = category as GuideCategory;
+  const info = CATEGORY_INFO[slug];
+  if (!info) return { title: "Not Found" };
+  return {
+    title: `${info.label} Guides`,
+    description: info.description,
+    alternates: { canonical: `/guides/category/${slug}` },
+  };
+}
+
 export default async function CategoryPage({ params }: Params) {
   const { category } = await params;
   const slug = category as GuideCategory;

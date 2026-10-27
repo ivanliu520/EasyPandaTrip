@@ -4,7 +4,7 @@ import { PROBLEM_CATEGORY_INFO } from "@/lib/types";
 import { SeverityBadge } from "@/components/Shared";
 
 export const metadata = {
-  title: "Fix a Problem — China Travel Guide",
+  title: "Fix a Problem",
   description:
     "Diagnose and resolve common issues in China. Alipay payment failed? Internet not working? Can't communicate? Step-by-step troubleshooting.",
 };

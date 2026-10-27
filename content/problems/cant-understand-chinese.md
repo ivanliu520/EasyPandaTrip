@@ -13,6 +13,13 @@ trigger_keywords:
   - "language barrier"
 related_guides:
   - "use-didi-in-china"
+sources:
+  - name: "Google Translate Help — Translate text in images"
+    url: "https://support.google.com/translate/answer/6142483"
+    type: "official"
+  - name: "WeChat Help Center — How to translate a message in a chat"
+    url: "https://help.wechat.com/cgi-bin/micromsg-bin/oshelpcenter?id=1208117b2mai1410246b6B3Q&lang=en&opcode=2"
+    type: "official"
 diagnosis:
   - slug: "step-1"
     question: "What do you need to communicate?"
@@ -24,7 +31,7 @@ diagnosis:
         recommended_action: "Most restaurants have picture menus. Point at the photos. If not, use Meituan app (美团) — it shows menus with photos at most places. The staff can help you order through it."
         backup_action: "The safe words: '这个' (zhège — this one). Point and say '这个' and they'll bring it."
       - label: "Ask for help or directions"
-        recommended_action: "Use Google Translate voice mode — speak English, it translates to Chinese. Or try the 10 essential phrases below."
+        recommended_action: "Use Google Translate voice mode, if available in your app — speak English and it translates to Chinese. Or try the 10 essential phrases below."
         backup_action: "Look for younger people or front desk staff — they're most likely to speak basic English."
       - label: "Read signs or notices"
         recommended_action: "Google Translate camera mode is excellent for this. Point your phone camera at any Chinese text and it overlays live translation."
@@ -35,10 +42,11 @@ diagnosis:
       - label: "Yes"
         recommended_action: "Great — use Google Translate. If Google is blocked, use WeChat's built-in translation feature (inside any chat: tap + → scan → translate)."
       - label: "No"
-        recommended_action: "Pre-download offline language packs on Google Translate BEFORE you left home. Otherwise, rely on the 10 phrases below and showing things."
+        recommended_action: "Pre-download offline language packs on Google Translate before you left home, if supported for your language and app version. Otherwise, rely on the 10 phrases below and showing things."
+        backup_action: "Ask hotel staff to write down what you need in Chinese, or use the 10 essential phrases below to point and communicate."
 ---
 
-# 10 Essential Chinese Phrases
+## 10 Essential Chinese Phrases
 
 Save these in your phone's notes — they're your survival kit:
 
@@ -60,6 +68,8 @@ Save these in your phone's notes — they're your survival kit:
 1. **WeChat Translation** — built-in, works without Google
 2. **Google Translate** — best quality, but needs VPN
 3. **Baidu Translate** — works natively, but English translation quality is lower
+
+Google Translate can also offer voice translation and offline language packs depending on the language and current app support.
 
 ## Pro Tip: Show, Don't Tell
 

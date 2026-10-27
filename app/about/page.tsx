@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "About — China Travel Guide",
+  title: "About",
   description:
     "Why this guide exists: practical, verified, action-first help for foreigners in China.",
 };

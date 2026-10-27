@@ -3,7 +3,7 @@ import { getAllGuides } from "@/lib/content";
 import { GuideCard } from "@/components/Shared";
 
 export const metadata = {
-  title: "All Guides — China Travel Guide",
+  title: "All Guides",
   description:
     "Complete step-by-step guides for Alipay, WeChat Pay, internet, DiDi, metro, and more for foreigners in China.",
 };

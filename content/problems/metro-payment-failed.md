@@ -14,12 +14,19 @@ trigger_keywords:
 related_guides:
   - "use-metro-in-china"
   - "use-alipay-china"
+sources:
+  - name: "Beijing Metro — Official Website"
+    url: "https://www.bjsubway.com"
+    type: "official"
+  - name: "Shanghai Metro — Official Website"
+    url: "https://www.shmetro.com"
+    type: "official"
 diagnosis:
   - slug: "step-1"
     question: "Where exactly are you stuck?"
     options:
       - label: "At the QR code entry gate"
-        recommended_action: "Make sure you're using the metro-specific QR code, not your regular Alipay/WeChat Pay code. Look for gates with the blue M or green W icon — those accept the payment apps. Regular gates need a physical ticket."
+        recommended_action: "Make sure you are using the metro-specific QR code (乘车码) rather than a generic payment QR code, and follow the gate's current instructions. Gate layouts and payment markings can vary by city and station."
         backup_action: "Buy a single-journey ticket from the machine — they accept Alipay/WeChat Pay/cards/cash."
       - label: "At the ticket machine — it won't take my card"
         recommended_action: "Some machines only accept UnionPay. Try a different machine or pay with Alipay/WeChat Pay at the machine's QR code scanner."
@@ -36,7 +43,7 @@ diagnosis:
         recommended_action: "This station may have outdated gates. Use a different metro entrance, or switch to buying physical tickets here."
 ---
 
-# Metro Payment Troubleshooting
+## Metro Payment Troubleshooting
 
 ## QR Code Types Matter
 
@@ -45,4 +52,4 @@ diagnosis:
 
 ## The Emergency Exit Trick
 
-If you're inside and absolutely can't exit: go to the staffed exit (every station has one, usually the one near the customer service desk). Just say "请帮忙" (qǐng bāng máng — please help) and show your entry evidence. They'll let you through — sometimes with a small penalty fee.
+If you're inside and absolutely can't exit: go to the staffed or customer-service area (most stations have one, usually near the customer service desk). Just say "请帮忙" (qǐng bāng máng — please help) and show your entry evidence. They'll let you through — sometimes with a small penalty fee.
