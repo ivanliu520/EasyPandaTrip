@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllCities } from "@/lib/content";
+import { getPublicCities } from "@/lib/content";
 
 export const metadata = {
   title: "Cities",
@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default function CitiesPage() {
-  const cities = getAllCities();
+  const cities = getPublicCities();
 
   return (
     <div className="container-page py-12 md:py-16">

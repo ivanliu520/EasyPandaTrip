@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllProblems } from "@/lib/content";
+import { getPublicProblems } from "@/lib/content";
 import { PROBLEM_CATEGORY_INFO } from "@/lib/types";
 import { SeverityBadge } from "@/components/Shared";
 
@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default function ProblemsPage() {
-  const problems = getAllProblems();
+  const problems = getPublicProblems();
 
   // Group by category
   const grouped = problems.reduce<Record<string, typeof problems>>(

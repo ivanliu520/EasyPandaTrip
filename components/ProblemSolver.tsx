@@ -2,7 +2,64 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { DiagnosisNode, ProblemFrontmatter, Source } from "@/lib/types";
+import type {
+  DiagnosisNode,
+  DiagnosisOption,
+  DecoratedOption,
+  ProblemFrontmatter,
+  Source,
+  TravelerContext,
+} from "@/lib/types";
+import { applyContextRules, decorateOptions } from "@/lib/rules";
+import { defaultTravelerContext, loadTravelerContext } from "@/lib/traveler-context";
+
+/**
+ * Defensive wrapper: context processing must never drop, duplicate, or
+ * reorder options. If it returns anything unexpected, fall back to the
+ * original options in their original order.
+ */
+function safeApplyContextRules(
+  options: DiagnosisOption[]
+): DiagnosisOption[] {
+  if (options.length === 0) return options;
+  try {
+    const processed = applyContextRules(options);
+    if (!Array.isArray(processed) || processed.length !== options.length) {
+      return options;
+    }
+    return processed;
+  } catch {
+    return options;
+  }
+}
+
+/**
+ * Safe decorator: wraps decorateOptions with the same defensive guarantees
+ * as safeApplyContextRules. If decoration throws or mismatches, fall back to
+ * the original options with hint=null for every one.
+ */
+function safeDecorate(
+  options: DiagnosisOption[],
+  context: TravelerContext
+): DecoratedOption[] {
+  if (options.length === 0) return [];
+  try {
+    const decorated = decorateOptions(options, context);
+    if (
+      Array.isArray(decorated) &&
+      decorated.length === options.length &&
+      decorated.every(
+        (d, i) => d.option === options[i] && (d.hint === null || typeof d.hint === "string")
+      )
+    ) {
+      return decorated;
+    }
+    // Mismatch — fall back to all-null hints
+  } catch {
+    // Throw — fall back
+  }
+  return options.map((o) => ({ option: o, hint: null }));
+}
 
 interface Props {
   problem: {
@@ -30,7 +87,31 @@ export function ProblemSolver({
   } | null>(null);
   const [history, setHistory] = useState<number[]>([]);
 
+  /**
+   * Phase 2B.3c: decorated options for the CURRENT node.
+   * null means "context has not been loaded yet" — render raw options (no hints,
+   * identical to the server render). Set only inside user event handlers that
+   * first call loadTravelerContext(). No localStorage reads during SSR or
+   * hydration. See docs/phase-2b3-design.md §5.
+   */
+  const [decorated, setDecorated] = useState<DecoratedOption[] | null>(null);
+
   const currentNode: DiagnosisNode | undefined = diagnosis[currentIndex];
+  const rawOptions = currentNode?.options ?? [];
+  const contextOptions = safeApplyContextRules(rawOptions);
+
+  /**
+   * Phase 2B.3c helper: load context from localStorage and compute decorations
+   * for the node at `nodeIndex`. Safe to call during server render (returns
+   * null context, all-null hints). Must be called inside user event handlers
+   * so hydration stays pure.
+   */
+  function refreshDecorations(nodeIndex: number) {
+    if (typeof window === "undefined") return;
+    const ctx = loadTravelerContext();
+    const node = diagnosis[nodeIndex];
+    setDecorated(safeDecorate(node?.options ?? [], ctx));
+  }
 
   function handleOptionClick(
     action: string,
@@ -53,7 +134,15 @@ export function ProblemSolver({
         setHistory([...history, currentIndex]);
         setCurrentIndex(nextIndex);
         setSelectedAnswer(null);
+        // Load context + compute decorations for the NEW node being navigated to
+        refreshDecorations(nextIndex);
       }
+    } else {
+      // No escalation — ensure the CURRENT node's decorations are loaded now,
+      // so when the user later navigates back to this node via Back/Reset,
+      // hints are already populated. This branch covers the common case where
+      // diagnosis Markdown has no escalate_to fields at all.
+      refreshDecorations(currentIndex);
     }
   }
 
@@ -63,9 +152,11 @@ export function ProblemSolver({
       setHistory(history.slice(0, -1));
       setCurrentIndex(prev);
       setSelectedAnswer(null);
+      refreshDecorations(prev);
     } else {
       setCurrentIndex(0);
       setSelectedAnswer(null);
+      refreshDecorations(0);
     }
   }
 
@@ -73,17 +164,30 @@ export function ProblemSolver({
     setCurrentIndex(0);
     setSelectedAnswer(null);
     setHistory([]);
+    refreshDecorations(0);
   }
 
-  // Advance to the next diagnosis node after the current advice was applied
   function handleContinue() {
     if (currentIndex + 1 >= diagnosis.length) return;
+    const next = currentIndex + 1;
     setHistory([...history, currentIndex]);
-    setCurrentIndex(currentIndex + 1);
+    setCurrentIndex(next);
     setSelectedAnswer(null);
+    refreshDecorations(next);
   }
 
   const hasNextStep = currentIndex + 1 < diagnosis.length;
+
+  /**
+   * Choose which option array to render:
+   *   - Before any handler fires → null decorated → raw content-order options
+   *   - After handler fires → decorated options (with additive hints)
+   * Invariant: length, order, and option objects are always identical.
+   */
+  const renderOptions: { option: DiagnosisOption; hint: string | null }[] =
+    decorated !== null
+      ? decorated
+      : contextOptions.map((o) => ({ option: o, hint: null }));
 
   return (
     <>
@@ -106,13 +210,13 @@ export function ProblemSolver({
           </div>
 
           {/* Question */}
-          {!selectedAnswer && currentNode && (
+          {!selectedAnswer && currentNode && renderOptions.length > 0 && (
             <>
               <h2 className="text-xl md:text-2xl font-bold mb-5">
                 {currentNode.question}
               </h2>
               <div className="space-y-3">
-                {currentNode.options.map((opt, i) => (
+                {renderOptions.map(({ option: opt, hint }, i) => (
                   <button
                     key={i}
                     onClick={() =>
@@ -131,8 +235,47 @@ export function ProblemSolver({
                       </span>
                       <span className="font-medium">{opt.label}</span>
                     </span>
+                    {/* Phase 2B.3c: additive hint (never present during SSR/hydration) */}
+                    {hint && (
+                      <span className="block mt-2 ml-10 text-sm text-amber-700 bg-amber-500/10 border border-amber-500/20 rounded-md px-3 py-1.5">
+                        {hint}
+                      </span>
+                    )}
                   </button>
                 ))}
+              </div>
+            </>
+          )}
+
+          {/* Defensive fallback: never leave the traveler without a way forward */}
+          {!selectedAnswer && (!currentNode || renderOptions.length === 0) && (
+            <>
+              <h2 className="text-xl md:text-2xl font-bold mb-3">
+                This diagnostic step didn&apos;t load correctly
+              </h2>
+              <p className="text-[var(--text-muted)] mb-6">
+                Your answers are still safe. Restart the diagnosis, or browse
+                the full list of problems and guides.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={handleReset}
+                  className="px-4 py-2 rounded-lg bg-[var(--brand-primary)] text-white text-sm font-medium hover:bg-[var(--brand-primary-dark)] transition"
+                >
+                  Restart Diagnosis
+                </button>
+                <Link
+                  href="/problems"
+                  className="px-4 py-2 rounded-lg border border-[var(--border)] text-sm hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition"
+                >
+                  Browse All Problems
+                </Link>
+                <Link
+                  href="/guides"
+                  className="px-4 py-2 rounded-lg border border-[var(--border)] text-sm hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition"
+                >
+                  Browse Guides
+                </Link>
               </div>
             </>
           )}

@@ -28,6 +28,7 @@ diagnosis:
       - label: "'Transaction rejected' or 'Insufficient balance'"
         recommended_action: "This usually means the merchant doesn't support international cards, or your balance is empty. Check: Me → Bank Cards → Your Card to verify it's bound and working."
         backup_action: "Try WeChat Pay instead, or pay with cash."
+        requires: ["alipay_setup"]
       - label: "QR code scanned but nothing shows on shop's screen"
         recommended_action: "Make sure you scanned the right QR code — there may be multiple in busy shops. Ask the cashier: '这个吗？' (zhège ma? — Is this one?)."
         backup_action: "Show your payment code instead (tap 'Pay' button on Home screen)."
@@ -43,6 +44,7 @@ diagnosis:
         recommended_action: "Contact Alipay support within the app: Me → Settings → Help & Feedback. Or try the emergency options below."
         backup_action: "Switch entirely to WeChat Pay for now."
         emergency_option: "Find an ATM and withdraw yuan cash. Major state-owned bank ATMs (such as Bank of China) are the most likely to accept international cards."
+        requires: ["alipay_setup", "wechat_pay_setup"]
 ---
 
 ## Alipay Payment Failed — Troubleshooting

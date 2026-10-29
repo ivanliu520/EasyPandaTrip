@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllGuides } from "@/lib/content";
+import { getPublicGuides } from "@/lib/content";
 import { GuideCard } from "@/components/Shared";
 
 export const metadata = {
@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default function GuidesPage() {
-  const guides = getAllGuides();
+  const guides = getPublicGuides();
 
   return (
     <div className="container-page py-12 md:py-16">

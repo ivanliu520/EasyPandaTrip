@@ -28,9 +28,11 @@ diagnosis:
       - label: "At the QR code entry gate"
         recommended_action: "Make sure you are using the metro-specific QR code (乘车码) rather than a generic payment QR code, and follow the gate's current instructions. Gate layouts and payment markings can vary by city and station."
         backup_action: "Buy a single-journey ticket from the machine — they accept Alipay/WeChat Pay/cards/cash."
+        requires: ["alipay_setup"]
       - label: "At the ticket machine — it won't take my card"
         recommended_action: "Some machines only accept UnionPay. Try a different machine or pay with Alipay/WeChat Pay at the machine's QR code scanner."
         backup_action: "Go to the customer service counter (usually has an attendant) — they can help."
+        requires: ["alipay_setup"]
       - label: "Already inside — need to exit but gate rejects my payment"
         recommended_action: "Metro gates need to see a valid token for exit. If you entered with Alipay, show the same Alipay code at exit. If you bought a ticket, insert it."
         backup_action: "Go to the customer service counter inside the station — they can help your exit for a small fee or by adjusting your payment."

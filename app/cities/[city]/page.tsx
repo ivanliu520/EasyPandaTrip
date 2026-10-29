@@ -16,10 +16,17 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { city } = await params;
   const cityData = getCityBySlug(city);
   if (!cityData) return { title: "Not Found" };
+  const isPublished = cityData.frontmatter.status === "verified";
   return {
     title: cityData.frontmatter.title,
     description: cityData.frontmatter.summary,
     alternates: { canonical: `/cities/${cityData.slug}` },
+    // Unreviewed cities stay directly reachable for internal review but must
+    // never be indexed. Independent of sitemap exclusion, same rule as guide
+    // and problem detail pages.
+    ...(isPublished
+      ? {}
+      : { robots: { index: false, follow: true } }),
   };
 }
 

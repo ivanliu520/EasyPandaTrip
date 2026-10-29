@@ -50,9 +50,7 @@ backup_options:
   - condition: "VPN stops working"
     action: "Switch to your backup VPN, or use the hotel's WiFi which may have different routing"
   - condition: "No mobile data coverage"
-    action: "Navigate using Gaode Maps offline — download city maps before leaving"
-common_problems:
-  - "internet-not-working"
+    action: "Save your destination's Chinese name and address as a screenshot or a text note before you leave, so you can show it to a driver or a passer-by — this is a readable reference, not offline map navigation"
 related_guides:
   - "use-didi-in-china"
 ---

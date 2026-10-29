@@ -28,7 +28,7 @@ diagnosis:
         recommended_action: "Open Gaode Maps, type your destination in English, get the Chinese name, copy-paste it to the driver via DiDi chat. Use specific landmarks: 'It's near the big McDonald's on X street'."
         backup_action: "Show the driver a photo of the building from your phone. Most hotels have distinctive exteriors."
       - label: "I can't find MY hotel (on foot)"
-        recommended_action: "Open Gaode Maps, enter your hotel name, and follow the walking directions. If you have downloaded the relevant city map in Gaode Maps, you may be able to use the map offline."
+        recommended_action: "Open Gaode Maps, enter your hotel name, and follow the walking directions. While you still have a connection, take a screenshot of the hotel's Chinese name and address so you have something readable to show someone if the map stops loading."
         backup_action: "Call the hotel front desk — most larger hotels have English-speaking staff. Ask them to give you detailed directions or speak to a taxi driver on your behalf."
       - label: "GPS is showing the wrong place"
         recommended_action: "This happens sometimes with English searches. Search for the hotel's Chinese name (copy from booking confirmation). Or search for the Chinese phone number in Gaode Maps."
@@ -38,7 +38,7 @@ diagnosis:
     options:
       - label: "Yes (harder conditions)"
         recommended_action: "Go to the nearest major building — malls, office towers, large hotels — and ask staff. They can help you navigate or call a taxi."
-        emergency_option: "Go to the police station or dial 110 (Chinese police). In major cities, police can assist tourists."
+        emergency_option: "Go to a police station or dial 110 (police/emergency line). English-language support is not guaranteed — this is an emergency channel, not a translation service."
       - label: "No"
         recommended_action: "Use Gaode Maps walking navigation. Streets in most major cities are well-signed."
 ---
@@ -49,7 +49,7 @@ diagnosis:
 
 ✅ Save your hotel address in **BOTH English and Chinese** (booking confirmation has both)
 ✅ Save your hotel's **local phone number** (not an international line)
-✅ Download Gaode Maps and download the **offline city map** for your destination
+✅ Install Gaode Maps, and save your hotel's **Chinese name and address** as a screenshot or a text note — readable without a connection, but not offline navigation
 ✅ Save a photo of your hotel's **exterior** and **entrance**
 
 ## Chinese Phrases for Address Help
@@ -63,4 +63,6 @@ diagnosis:
 
 ## Police Number (Emergency)
 
-If you're truly stuck and can't communicate, dial **110** (police). In major cities, police can assist tourists and may help arrange basic communication support.
+If you're truly stuck and can't communicate, dial **110** (police). English-language support is not guaranteed and can vary by city and by who answers, so try to have your address written down before you call. Do not hesitate to call if you feel unsafe.
+
+This page does not claim that police can arrange translation or communication support for tourists — that is not something our sources confirm.

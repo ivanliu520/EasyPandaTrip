@@ -62,7 +62,8 @@ export const QUESTIONS: {
   },
 ];
 
-export const TASK_MAP: Record<string, { label: string; guideSlug: string }> = {
+// `guideSlug` is optional: a task may have no publicly linkable guide yet.
+export const TASK_MAP: Record<string, { label: string; guideSlug?: string }> = {
   has_alipay: {
     label: "Set up Alipay",
     guideSlug: "use-alipay-china",
@@ -77,19 +78,21 @@ export const TASK_MAP: Record<string, { label: string; guideSlug: string }> = {
   },
   has_map_app: {
     label: "Install navigation app",
-    guideSlug: "", // not yet a dedicated guide, will point to daily-life
+    guideSlug: "use-amap-maps-in-china",
   },
   has_cash_backup: {
     label: "Arrange cash backup",
-    guideSlug: "",
+    guideSlug: "cash-and-atm-in-china",
   },
+  // The phrases guide is still a draft, so this task intentionally has no
+  // guide link. Restore guideSlug once content/guides/essential-chinese-phrases.md
+  // is verified.
   has_chinese_phrases: {
     label: "Learn key Chinese phrases",
-    guideSlug: "",
   },
   has_hotel_address_cn: {
     label: "Get your hotel address in Chinese",
-    guideSlug: "",
+    guideSlug: "get-hotel-address-in-chinese",
   },
 };
 

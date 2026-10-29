@@ -1,5 +1,10 @@
 import { MetadataRoute } from "next";
-import { getAllGuides, getAllProblems, getAllCities } from "@/lib/content";
+import {
+  getPublicGuides,
+  getPublicProblems,
+  getPublicCities,
+  getPublishedCategories,
+} from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://chinatravelguide.app";
@@ -15,24 +20,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/about`, lastModified: now },
   ];
 
-  const guides = getAllGuides().map((g) => ({
+  const guides = getPublicGuides().map((g) => ({
     url: `${baseUrl}/guides/${g.slug}`,
     lastModified: g.frontmatter.last_verified,
   }));
 
-  const guideCategories = [
-    { url: `${baseUrl}/guides/category/prepare`, lastModified: now },
-    { url: `${baseUrl}/guides/category/get-around`, lastModified: now },
-    { url: `${baseUrl}/guides/category/pay`, lastModified: now },
-    { url: `${baseUrl}/guides/category/daily-life`, lastModified: now },
-  ];
+  // Only categories that actually have a published guide are listed.
+  const guideCategories = getPublishedCategories().map((category) => ({
+    url: `${baseUrl}/guides/category/${category}`,
+    lastModified: now,
+  }));
 
-  const problems = getAllProblems().map((p) => ({
+  const problems = getPublicProblems().map((p) => ({
     url: `${baseUrl}/problems/${p.slug}`,
     lastModified: p.frontmatter.last_verified,
   }));
 
-  const cities = getAllCities().map((c) => ({
+  const cities = getPublicCities().map((c) => ({
     url: `${baseUrl}/cities/${c.slug}`,
     lastModified: c.frontmatter.last_verified,
   }));

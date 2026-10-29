@@ -9,6 +9,7 @@ import type {
   City,
   CityFrontmatter,
 } from "./types";
+import { CATEGORY_INFO } from "./types";
 
 const CONTENT_ROOT = path.join(process.cwd(), "content");
 
@@ -49,7 +50,7 @@ export function getAllGuides(): Guide[] {
       target_audience: (f.target_audience ?? []) as string[],
       estimated_minutes: (f.estimated_minutes ?? 5) as number,
       last_verified: f.last_verified as string,
-      status: (f.status ?? "verified") as GuideFrontmatter["status"],
+      status: (f.status ?? "draft") as GuideFrontmatter["status"],
       sources: (f.sources ?? []) as GuideFrontmatter["sources"],
       prerequisites: (f.prerequisites ?? []) as GuideFrontmatter["prerequisites"],
       steps: f.steps as GuideFrontmatter["steps"],
@@ -66,19 +67,42 @@ export function getGuideBySlug(slug: string): Guide | undefined {
   return getAllGuides().find((g) => g.slug === slug);
 }
 
-export function getGuidesByCategory(
-  category: GuideFrontmatter["category"]
-): Guide[] {
-  return getAllGuides().filter((g) => g.frontmatter.category === category);
+// --- Public visibility ---
+
+/**
+ * Only `verified` content is eligible for public discovery: site search,
+ * sitemap, and listing pages. Draft/stale/outdated content stays reachable
+ * by direct URL (and from related links) so it can be reviewed before
+ * publication, but it must not be indexed or surfaced in listings.
+ */
+function isPublished(status: string): boolean {
+  return status === "verified";
 }
 
-export function getGuidesForCity(city: string): Guide[] {
-  return getAllGuides().filter((g) => {
-    const scope = g.frontmatter.city_scope;
-    if (scope === "all") return true;
-    if (Array.isArray(scope)) return scope.includes(city as never);
-    return scope === city;
-  });
+export function getPublicGuides(): Guide[] {
+  return getAllGuides().filter((g) => isPublished(g.frontmatter.status));
+}
+
+export function getPublicGuidesByCategory(
+  category: GuideFrontmatter["category"]
+): Guide[] {
+  return getPublicGuides().filter((g) => g.frontmatter.category === category);
+}
+
+export function getPublicProblems(): Problem[] {
+  return getAllProblems().filter((p) => isPublished(p.frontmatter.status));
+}
+
+export function getPublicCities(): City[] {
+  return getAllCities().filter((c) => isPublished(c.frontmatter.status));
+}
+
+/** Categories that have at least one publicly listed guide. */
+export function getPublishedCategories(): GuideFrontmatter["category"][] {
+  const published = getPublicGuides();
+  return (Object.keys(CATEGORY_INFO) as GuideFrontmatter["category"][]).filter(
+    (category) => published.some((g) => g.frontmatter.category === category)
+  );
 }
 
 // --- Problems ---
@@ -93,7 +117,7 @@ export function getAllProblems(): Problem[] {
       category: f.category as ProblemFrontmatter["category"],
       severity: (f.severity ?? "medium") as ProblemFrontmatter["severity"],
       last_verified: f.last_verified as string,
-      status: (f.status ?? "verified") as ProblemFrontmatter["status"],
+      status: (f.status ?? "draft") as ProblemFrontmatter["status"],
       sources: (f.sources ?? []) as ProblemFrontmatter["sources"],
       trigger_keywords: (f.trigger_keywords ?? []) as string[],
       diagnosis: f.diagnosis as ProblemFrontmatter["diagnosis"],
@@ -119,7 +143,7 @@ export function getAllCities(): City[] {
       transport_notes: f.transport_notes as string | undefined,
       payment_notes: f.payment_notes as string | undefined,
       last_verified: f.last_verified as string,
-      status: (f.status ?? "verified") as CityFrontmatter["status"],
+      status: (f.status ?? "draft") as CityFrontmatter["status"],
       related_guides: (f.related_guides ?? []) as string[],
       related_problems: (f.related_problems ?? []) as string[],
     };
@@ -143,7 +167,7 @@ export interface SearchableItem {
 }
 
 export function getAllSearchable(): SearchableItem[] {
-  const guides = getAllGuides().map((g) => {
+  const guides = getPublicGuides().map((g) => {
     const fm = g.frontmatter;
     // Reuse existing frontmatter fields as search keywords (no new content written).
     // Kept as short separate phrases so Fuse scores each one without position penalty.
@@ -164,7 +188,7 @@ export function getAllSearchable(): SearchableItem[] {
       url: `/guides/${g.slug}`,
     };
   });
-  const problems = getAllProblems().map((p) => ({
+  const problems = getPublicProblems().map((p) => ({
     type: "problem" as const,
     slug: p.slug,
     title: p.frontmatter.title,
@@ -173,7 +197,7 @@ export function getAllSearchable(): SearchableItem[] {
     keywords: p.frontmatter.trigger_keywords ?? [],
     url: `/problems/${p.slug}`,
   }));
-  const cities = getAllCities().map((c) => ({
+  const cities = getPublicCities().map((c) => ({
     type: "city" as const,
     slug: c.slug,
     title: c.frontmatter.title,

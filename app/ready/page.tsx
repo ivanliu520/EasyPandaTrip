@@ -9,9 +9,14 @@ import {
   defaultAnswers,
   getProgress,
   getMissingTasks,
-  TASK_MAP,
   type ChecklistAnswers,
 } from "@/lib/checklist";
+import {
+  defaultTravelerContext,
+  loadTravelerContext,
+  updateTravelerContext,
+} from "@/lib/traveler-context";
+import type { Readiness, TravelerContext } from "@/lib/types";
 
 // Client-only flag without setState-in-effect: false during SSR/hydration, true after
 function useMounted() {
@@ -22,15 +27,85 @@ function useMounted() {
   );
 }
 
+/** Map a tri-state context readiness value to the checklist boolean it implies. */
+function readinessToChecked(r: Readiness): boolean {
+  return r === "ready";
+}
+
+/** User-facing labels for internal tri-state values shown in the profile summary. */
+const READINESS_LABELS: Record<Readiness, string> = {
+  ready: "Ready",
+  not_ready: "Not set up",
+  unknown: "Not sure",
+};
+
+interface TriStateProps {
+  label: string;
+  description: string;
+  value: Readiness;
+  onChange: (value: Readiness) => void;
+}
+
+/** Explicit three-state readiness control: Ready / Not ready / Not sure. */
+function TriStateControl({ label, description, value, onChange }: TriStateProps) {
+  const options: { value: Readiness; text: string }[] = [
+    { value: "ready", text: "Ready" },
+    { value: "not_ready", text: "Not ready" },
+    { value: "unknown", text: "Not sure" },
+  ];
+  return (
+    <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--card-bg)]">
+      <div className="font-medium">{label}</div>
+      <div className="text-sm text-[var(--text-muted)] mb-3">{description}</div>
+      <div className="flex flex-wrap gap-2" role="group" aria-label={label}>
+        {options.map((opt) => {
+          const selected = value === opt.value;
+          return (
+            <button
+              key={opt.value}
+              type="button"
+              aria-pressed={selected}
+              onClick={() => onChange(opt.value)}
+              className={`px-3 py-1.5 rounded-md text-sm border transition ${
+                selected
+                  ? "bg-[var(--brand-primary)] border-[var(--brand-primary)] text-white"
+                  : "border-[var(--border)] hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)]"
+              }`}
+            >
+              {opt.text}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function ReadyPage() {
   const mounted = useMounted();
   // localStorage is read lazily during client hydration; while !mounted we render a loading state
   const [answers, setAnswers] = useState<ChecklistAnswers>(() =>
     typeof window === "undefined" ? defaultAnswers() : loadAnswers()
   );
+  const [travelerContext, setTravelerContext] = useState<TravelerContext>(() =>
+    typeof window === "undefined" ? defaultTravelerContext() : loadTravelerContext()
+  );
 
   function toggle(key: keyof ChecklistAnswers) {
     const newAnswers = { ...answers, [key]: !answers[key] };
+    setAnswers(newAnswers);
+    saveAnswers(newAnswers);
+  }
+
+  function setReadiness(
+    field: "alipay" | "wechat_pay",
+    value: Readiness,
+    checklistKey: "has_alipay" | "has_wechat_pay"
+  ) {
+    const updated = updateTravelerContext({ [field]: value });
+    setTravelerContext(updated);
+    // Keep the checklist boolean in sync: only an explicit "ready" counts as done.
+    const newAnswers = { ...answers, [checklistKey]: readinessToChecked(value) };
     setAnswers(newAnswers);
     saveAnswers(newAnswers);
   }
@@ -54,6 +129,21 @@ export default function ReadyPage() {
 
       {mounted ? (
         <div className="max-w-2xl mx-auto">
+          {/* Traveler Context summary */}
+          <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] mb-8">
+            <p className="text-sm font-medium text-[var(--text-muted)] mb-2">
+              Your traveler profile
+            </p>
+            <div className="flex flex-wrap gap-2 text-sm">
+              <span className="px-2 py-1 rounded-md bg-[var(--border)]">
+                Alipay: {READINESS_LABELS[travelerContext.alipay]}
+              </span>
+              <span className="px-2 py-1 rounded-md bg-[var(--border)]">
+                WeChat Pay: {READINESS_LABELS[travelerContext.wechat_pay]}
+              </span>
+            </div>
+          </div>
+
           {/* Progress summary */}
           <div
             className={`p-6 rounded-2xl border mb-8 ${
@@ -87,12 +177,33 @@ export default function ReadyPage() {
             </p>
           </div>
 
+          {/* Payment readiness — explicit tri-state controls */}
+          <div className="space-y-3 mb-10">
+            <h2 className="text-lg font-semibold mb-2">
+              Payment readiness
+            </h2>
+            <TriStateControl
+              label="Alipay set up"
+              description="Downloaded, registered, and ready to use"
+              value={travelerContext.alipay}
+              onChange={(v) => setReadiness("alipay", v, "has_alipay")}
+            />
+            <TriStateControl
+              label="WeChat Pay set up"
+              description="Downloaded and linked to a payment method"
+              value={travelerContext.wechat_pay}
+              onChange={(v) => setReadiness("wechat_pay", v, "has_wechat_pay")}
+            />
+          </div>
+
           {/* Questions */}
           <div className="space-y-3 mb-10">
             <h2 className="text-lg font-semibold mb-2">
-              What have you already prepared?
+              What else have you prepared?
             </h2>
-            {QUESTIONS.map((q) => {
+            {QUESTIONS.filter(
+              (q) => q.key !== "has_alipay" && q.key !== "has_wechat_pay"
+            ).map((q) => {
               const done = answers[q.key];
               return (
                 <button
@@ -145,12 +256,17 @@ export default function ReadyPage() {
                         Start Guide →
                       </Link>
                     ) : (
-                      <Link
-                        href="/guides"
-                        className="text-sm px-3 py-1.5 rounded-md border border-[var(--border)] hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition whitespace-nowrap"
-                      >
-                        Browse Guides
-                      </Link>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-[var(--text-muted)] whitespace-nowrap">
+                          No dedicated guide yet
+                        </span>
+                        <Link
+                          href="/guides"
+                          className="text-sm px-3 py-1.5 rounded-md border border-[var(--border)] hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)] transition whitespace-nowrap"
+                        >
+                          Browse all guides
+                        </Link>
+                      </div>
                     )}
                   </div>
                 ))}

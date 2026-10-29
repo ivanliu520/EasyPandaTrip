@@ -9,10 +9,14 @@ highlights:
   - "French Concession / Former French Settlement"
   - "Nanjing Road shopping"
   - "Tianzifang art district"
-transport_notes: "Pudong International Airport (PVG) and Hongqiao (SHA) both serve Shanghai. PVG is 40km from city — Maglev train (one of the world's fastest commercial trains) takes 8 minutes to Longyang Road station for ¥50. Metro: 21 lines, fares from ¥3 (Airport Link Line is priced separately). Eligible contactless bank cards (UnionPay, Visa, Mastercard, JCB, Amex) are accepted at metro gates. DiDi and taxis abundant."
-payment_notes: "Very international. Most restaurants accept international cards. Alipay/WeChat Pay universal. Foreigners often find Shanghai payment easier than other Chinese cities."
+transport_notes: "Pudong International Airport (PVG) and Hongqiao (SHA) both serve Shanghai. From PVG, the Maglev covers the 30-km route to Longyang Road station in 8 minutes for ¥50 (¥80 round trip). Metro: 21 lines, fares from ¥3 for trips up to 6 km plus ¥1 per 10 km; the Airport Link Line is priced separately, from ¥4. Eligible contactless bank cards (UnionPay, Visa, Mastercard, JCB, Amex) are accepted at metro gates for tap-to-ride. DiDi and taxis abundant."
+payment_notes: "International cards are accepted in many hotels, malls, and restaurants aimed at visitors, but acceptance varies by merchant and small vendors may be mobile-payment only. Alipay and WeChat Pay are accepted almost everywhere. Carry a backup payment method — a second card and some cash — rather than relying on one option."
 last_verified: "2026-09-15"
 status: "verified"
+sources:
+  - name: "Shanghai Municipal Government — Getting around Shanghai: Transport options and fares"
+    url: "https://english.shanghai.gov.cn/en-Transportation/20240102/44f499a17b324b25996f2d58fcbf5f23.html"
+    type: "official"
 related_guides:
   - "use-alipay-china"
   - "use-metro-in-china"
@@ -27,8 +31,8 @@ related_problems:
 
 - **From Pudong Airport to City**: Maglev → metro connection = ~30 min total. Or take Metro Line 2 directly (slower but cheaper)
 - **Hongqiao Airport**: Directly connected by Metro Line 2 and 10
-- **Metro**: The fastest way around Shanghai. Trains run until ~11pm
-- **Bund / Pudong**: Free ferry across the Huangpu River at the Bund — great views
+- **Metro**: The fastest way around Shanghai. Trains run late into the evening, but last-train times differ by line and station — check the current schedule from the operator before relying on a late journey
+- **Bund / Pudong**: Cross the Huangpu River by ferry at the Bund — great views. Per the Shanghai municipal government, pedestrian ferry fares are ¥2
 
 ## Best Itineraries
 

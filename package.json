@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/validate-content.cjs",
     "build": "next build",
+    "postbuild": "node scripts/test-publication-visibility.cjs --require-artifacts",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify": "node scripts/validate-content.cjs && node scripts/test-rules-safety.cjs && node scripts/test-traveler-context.cjs",
+    "verify:publication": "npm run build"
   },
   "dependencies": {
     "fuse.js": "^7.0.0",

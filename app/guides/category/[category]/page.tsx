@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getGuidesByCategory } from "@/lib/content";
+import { getPublicGuidesByCategory, getPublishedCategories } from "@/lib/content";
 import { CATEGORY_INFO, type GuideCategory } from "@/lib/types";
 import { GuideCard } from "@/components/Shared";
 
@@ -9,7 +9,7 @@ interface Params {
 }
 
 export function generateStaticParams() {
-  return Object.keys(CATEGORY_INFO).map((category) => ({ category }));
+  return getPublishedCategories().map((category) => ({ category }));
 }
 
 export async function generateMetadata({ params }: Params) {
@@ -31,7 +31,10 @@ export default async function CategoryPage({ params }: Params) {
 
   if (!info) notFound();
 
-  const guides = getGuidesByCategory(slug);
+  const guides = getPublicGuidesByCategory(slug);
+
+  // An empty category has nothing to show the public, so it does not exist.
+  if (guides.length === 0) notFound();
 
   return (
     <div className="container-page py-12 md:py-16">
@@ -47,20 +50,14 @@ export default async function CategoryPage({ params }: Params) {
       </div>
       <p className="text-[var(--text-muted)] mb-10">{info.description}</p>
 
-      {guides.length === 0 ? (
-        <p className="text-[var(--text-muted)]">
-          No guides yet in this category. Check back soon!
-        </p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {guides.map((g) => (
-            <GuideCard
-              key={g.slug}
-              guide={{ ...g.frontmatter, slug: g.slug }}
-            />
-          ))}
-        </div>
-      )}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {guides.map((g) => (
+          <GuideCard
+            key={g.slug}
+            guide={{ ...g.frontmatter, slug: g.slug }}
+          />
+        ))}
+      </div>
     </div>
   );
 }

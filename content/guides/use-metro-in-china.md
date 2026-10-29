@@ -33,10 +33,10 @@ steps:
     instruction: "Use Gaode Maps (高德地图) or Baidu Maps to find the closest metro station. Metro stations are marked with blue M icons."
   - order: 2
     title: "Enter through the correct entrance"
-    instruction: "Most stations have multiple entrances (labeled A, B, C, D). Check signs or ask a local which entrance goes in your direction. All entrances eventually lead to the same ticket area."
+    instruction: "Most stations have multiple entrances (labeled A, B, C, D). Check signs or ask a local which entrance serves your direction — at larger stations an entrance leads into a specific line's concourse, so pick one that matches the line you want rather than assuming they all connect."
   - order: 3
     title: "Buy a ticket or tap to enter"
-    instruction: "Options: (a) Use Alipay/WeChat Pay — first activate the metro QR code (乘车码): in Alipay open \"Transport\" and select your city, or in WeChat use the city transit mini-program, then scan it at the gate; (b) Buy a single-journey ticket from a machine (touchscreen, usually has English); (c) Use a local transport card if you have one. (d) Tap an eligible contactless bank card (UnionPay, Visa, Mastercard, JCB, or American Express) directly at the gate — available across the Beijing network and on the Shanghai Metro."
+    instruction: "Options: (a) Use Alipay/WeChat Pay — first activate the metro QR code (乘车码): in Alipay open \"Transport\" and select your city, or in WeChat use the city transit mini-program, then scan it at the gate; (b) Buy a single-journey ticket from a machine (touchscreen, usually has English); (c) Use a local transport card if you have one. (d) Tap an eligible contactless bank card (UnionPay, Visa, Mastercard, JCB, or American Express) directly at the gate. Beijing covers this across all 29 lines and 523 stations, at all fare gates; Shanghai Metro also supports tap-to-ride with the same card schemes. Card eligibility and station coverage can change, so check the operator's current guidance before relying on a single card."
     visual_cue: "Ticket machines usually have English language option (look for the UK/US flag icon)"
   - order: 4
     title: "Pass through security checkpoints"
@@ -47,7 +47,7 @@ steps:
     failure_guidance: "When confused, ask someone: 'Intercontinental Hotel direction?' — they'll point you right"
   - order: 6
     title: "Board and ride"
-    instruction: "Trains run every 2-5 minutes. Doors open on the side facing the platform. Don't try to board right as doors close — they're fast."
+    instruction: "Trains are frequent throughout the day — the interval varies by line and time of day, so check the platform display for the next train. Doors open on the side facing the platform. Don't try to board right as doors close — they're fast."
   - order: 7
     title: "Transfer if needed"
     instruction: "Transfer stations have colored lines guiding you between connections. Follow signs with your line number. Usually involves a short walk (2-5 minutes)."
@@ -57,7 +57,7 @@ steps:
 expected_result: "You can navigate Beijing and Shanghai's metro systems independently with minimal Chinese."
 backup_options:
   - condition: "QR code payment gate isn't working"
-    action: "Use a single-journey ticket from the machine — cash and cards accepted"
+    action: "Go to a ticket machine or the staffed service window at the station entrance and buy a single-journey ticket. Staff at the window can help if the machine won't take your payment method — queuing time is shorter outside peak hours"
 common_problems:
   - "metro-payment-failed"
 related_guides:
@@ -67,7 +67,7 @@ related_guides:
 
 ## China Metro — Beijing & Shanghai
 
-China's metro systems are among the best in the world — clean, frequent, safe, and inexpensive (fares start at ¥3 per trip; airport express lines cost more). Here's what you need:
+China's metro systems are among the best in the world — clean, frequent, safe, and inexpensive. Shanghai metro fares start at ¥3 for trips up to 6 km; the Airport Link Line is priced on a separate basis. Here's what you need:
 
 ## Payment Methods
 
@@ -76,14 +76,18 @@ China's metro systems are among the best in the world — clean, frequent, safe,
 | Alipay/WeChat Pay | Activate the metro QR code (乘车码), then scan at gate | Regular travelers |
 | Single-journey ticket | Buy from machine | First-time, occasional |
 | Transport card | Tap card | Long stays |
-| Eligible contactless bank card (UnionPay, Visa, Mastercard, JCB, Amex) | Tap card at gate | Beijing (all lines & stations); Shanghai Metro |
+| Eligible contactless bank card (UnionPay, Visa, Mastercard, JCB, Amex) | Tap card at gate | Beijing: all lines and stations; Shanghai: Metro gate tap-to-ride |
+
+Paying at a machine: in Shanghai, international bank cards are accepted for ticket purchase; cash acceptance is not confirmed system-wide, so have a QR payment method ready as backup. Whether you scan or insert the ticket at the gate varies by system — follow the markings on the gate.
 
 ## Metro Names
 
 | City | Lines | Color of Line Signs | Fare Range |
 |------|-------|---------------------|------------|
-| Beijing | 29 | White text on colored background | from ¥3 (airport express lines separately priced) |
-| Shanghai | 21 | Colored lines | from ¥3 (Airport Link Line separately priced) |
+| Beijing | 29 (523 stations — as published by the Beijing municipal government, June 2025) | White text on colored background | Low fares; fares for the two airport express lines are not confirmed here |
+| Shanghai | 21 (as published by the Shanghai municipal government) | Colored lines | From ¥3 for trips up to 6 km, +¥1 per 10 km; Airport Link Line priced separately, from ¥4 |
+
+Both cities open new lines regularly, so treat these counts and fares as the position at the source's publication date rather than permanent.
 
 ## Common Station Signs to Recognize
 

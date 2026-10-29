@@ -9,16 +9,18 @@ highlights:
   - "Summer Palace"
   - "Hutong neighborhoods"
   - "798 Art District"
-transport_notes: "Beijing Capital International Airport (PEK) is 25km northeast. Beijing Daxing International (PKX) opened 2019, further south. Both have airport express trains to the city center. Metro: 29 lines, fares from ¥3 (Capital Airport Express ¥25 and Daxing Airport Express from ¥10 (up to ¥35) are priced separately). Eligible contactless bank cards (UnionPay, Visa, Mastercard, JCB, Amex) work at metro gates. DiDi is widely available in major Chinese cities."
+transport_notes: "Beijing Capital International Airport (PEK) is 25km northeast. Beijing Daxing International (PKX) opened 2019, further south. Both have airport express trains to the city center. Metro: 29 lines and 523 stations as published by the Beijing municipal government in June 2025. Airport express lines are part of that network; their fares are not confirmed here. Eligible contactless bank cards (UnionPay, Visa, Mastercard, JCB, Amex) tap directly at fare gates across all lines and stations. DiDi is widely available in major Chinese cities."
 payment_notes: "All major payment methods work. International cards accepted at luxury hotels and high-end restaurants. Smaller vendors prefer Alipay/WeChat Pay."
 last_verified: "2026-09-15"
 status: "verified"
+sources:
+  - name: "Beijing Municipal Government — Beijing Subway Supports Tap-and-Go with 5 Most Used Overseas Cards"
+    url: "https://english.beijing.gov.cn/latest/news/202506/t20250616_4114250.html"
+    type: "official"
 related_guides:
   - "use-alipay-china"
   - "use-didi-in-china"
   - "use-metro-in-china"
-related_problems:
-  - "internet-not-working"
 ---
 
 ## Beijing — Quick Practical Guide
@@ -42,8 +44,8 @@ related_problems:
 ## Food Notes
 
 - Find **Peking Duck** at Quanjude or Dadong — expect ¥150-300/person
-- Street food is safe at night markets (Wangfujing, Guijie)
-- Dumpling chains: Mr. Li (便宜坊) is a reliable budget option
+- **Night markets and street stalls** (Wangfujing, Guijie) are popular, but hygiene varies from stall to stall — choose busy stalls with food cooked fresh in front of you, and skip anything that has been sitting out
+- **Dumpling chains** are a reliable budget option — check the name on the storefront before you go in, since similar-sounding chains are easy to confuse
 
 ## Beijing-Specific Tips
 

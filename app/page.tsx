@@ -1,11 +1,15 @@
 import Link from "next/link";
-import { getAllGuides, getAllProblems, getAllCities } from "@/lib/content";
+import {
+  getPublicGuides,
+  getPublicProblems,
+  getPublicCities,
+} from "@/lib/content";
 import { CATEGORY_INFO } from "@/lib/types";
 
 export default function HomePage() {
-  const guides = getAllGuides();
-  const problems = getAllProblems();
-  const cities = getAllCities();
+  const guides = getPublicGuides();
+  const problems = getPublicProblems();
+  const cities = getPublicCities();
 
   const categorySlugs: (keyof typeof CATEGORY_INFO)[] = [
     "prepare",
@@ -68,6 +72,7 @@ export default function HomePage() {
               const count = guides.filter(
                 (g) => g.frontmatter.category === slug
               ).length;
+              if (count === 0) return null;
               return (
                 <Link
                   key={slug}

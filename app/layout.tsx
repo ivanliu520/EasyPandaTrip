@@ -95,7 +95,7 @@ export default function RootLayout({
               </div>
             </div>
             <p className="mt-6 text-xs">
-              Information is verified to the best of our ability. Always check official sources before important decisions.
+              Each page shows its own verification status and last-verified date — check that badge before relying on a page for an important decision, and confirm time-sensitive details with official sources.
             </p>
           </div>
         </footer>

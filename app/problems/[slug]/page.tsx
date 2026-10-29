@@ -19,10 +19,17 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const problem = getProblemBySlug(slug);
   if (!problem) return { title: "Not Found" };
+  const isPublished = problem.frontmatter.status === "verified";
   return {
     title: problem.frontmatter.title,
     description: problem.frontmatter.summary,
     alternates: { canonical: `/problems/${problem.slug}` },
+    // Unreviewed problems stay directly reachable for internal review but
+    // must never be indexed. This is independent of sitemap exclusion, same
+    // rule as guide detail pages.
+    ...(isPublished
+      ? {}
+      : { robots: { index: false, follow: true } }),
   };
 }
 

@@ -68,12 +68,40 @@ export interface Guide {
   slug: string;
 }
 
+/**
+ * What a diagnosis option is ABOUT. Informational only — the solver never
+ * reads this field. Reserved for future search facets / analytics.
+ */
+export type OptionTopic =
+  | "alipay"
+  | "wechat_pay"
+  | "chinese_number"
+  | "international_card"
+  | "cash_atm"
+  | "metro"
+  | "vpn"
+  | "maps"
+  | "staff";
+
+/**
+ * What must hold for an option's recommended_action to be executable.
+ * Drives hint attachment ONLY (Phase 2B.3c+). Never filters, reorders,
+ * or rewrites an option. Hints fire only on an explicit "not_ready".
+ */
+export type OptionRequirement =
+  | "alipay_setup"
+  | "wechat_pay_setup"
+  | "chinese_phone_number"
+  | "international_card";
+
 export interface DiagnosisOption {
   label: string;
   recommended_action: string;
   backup_action?: string;
   escalate_to?: string; // next question slug
   emergency_option?: string;
+  topic_tags?: OptionTopic[]; // solver-inert; informational only
+  requires?: OptionRequirement[]; // hint-driving; additive only
 }
 
 export interface DiagnosisNode {
@@ -111,6 +139,8 @@ export interface CityFrontmatter {
   payment_notes?: string;
   last_verified: string;
   status: ContentStatus;
+  /** Optional provenance for factual claims. Backward-compatible: files without it still validate. */
+  sources?: Source[];
   related_guides?: string[];
   related_problems?: string[];
 }
@@ -159,3 +189,35 @@ export const PROBLEM_CATEGORY_INFO: Record<
   emergency: { label: "Emergency", icon: "🆘" },
   other: { label: "Other", icon: "❓" },
 };
+
+// Phase 2: Traveler Context
+
+/**
+ * Tri-state readiness. Hints fire ONLY on an explicit "not_ready".
+ * "unknown" means no reliable answer (missing, default, invalid, or
+ * migrated-from-false). Never infer "not_ready" from any of those.
+ */
+export type Readiness = "ready" | "not_ready" | "unknown";
+
+export type PhoneOS = "ios" | "android" | "unknown";
+
+export interface TravelerContext {
+  /** FINAL name (legacy key was first_trip_to_china; see migration). */
+  has_visited_china_before: boolean;
+  phone_os: PhoneOS;
+  chinese_phone_number: Readiness;
+  alipay: Readiness;
+  wechat_pay: Readiness;
+  international_card: Readiness;
+  travel_cities: string[];
+}
+
+/**
+ * Presentation decoration from Phase 2B.3c. `option` is the ORIGINAL
+ * DiagnosisOption reference — never mutated, never reordered. `hint` is
+ * null (no personalization) or an app-owned UI string (never from content).
+ */
+export interface DecoratedOption {
+  option: DiagnosisOption;
+  hint: string | null;
+}

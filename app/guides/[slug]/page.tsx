@@ -21,10 +21,16 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const guide = getGuideBySlug(slug);
   if (!guide) return { title: "Not Found" };
+  const isPublished = guide.frontmatter.status === "verified";
   return {
     title: guide.frontmatter.title,
     description: guide.frontmatter.summary,
     alternates: { canonical: `/guides/${guide.slug}` },
+    // Unreviewed content stays directly reachable for internal review but
+    // must never be indexed. This is independent of sitemap exclusion.
+    ...(isPublished
+      ? {}
+      : { robots: { index: false, follow: true } }),
     openGraph: {
       title: guide.frontmatter.title,
       description: guide.frontmatter.summary,
@@ -270,18 +276,9 @@ export default async function GuidePage({ params }: Params) {
             </div>
           )}
 
-          {/* Feedback */}
+          {/* Verification note */}
           <div className="p-5 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-sm">
-            <h3 className="font-semibold mb-2">Was this helpful?</h3>
-            <div className="flex gap-2">
-              <button className="px-3 py-1.5 rounded-md border border-[var(--border)] hover:border-green-500 hover:text-green-600 transition">
-                👍 Yes
-              </button>
-              <button className="px-3 py-1.5 rounded-md border border-[var(--border)] hover:border-red-500 hover:text-red-600 transition">
-                👎 No
-              </button>
-            </div>
-            <p className="text-xs text-[var(--text-muted)] mt-3">
+            <p className="text-xs text-[var(--text-muted)]">
               Last verified {frontmatter.last_verified}
             </p>
           </div>

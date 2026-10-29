@@ -38,10 +38,10 @@ steps:
     failure_guidance: "If verification fails, make sure your passport photo is clear and all corners are visible. Retry in better lighting."
   - order: 4
     title: "Bind your international card"
-    instruction: "After verification, go to Me → Bank Cards → Add Card. Enter your Visa/Mastercard/JCB card details. The app may verify your card with a small temporary authorization; if one appears, it is typically reversed automatically."
+    instruction: "After verification, go to Me → Bank Cards → Add Card. Enter your Visa/Mastercard/JCB card details. The app may test your card with a small temporary authorization. Check your card statement or app afterwards rather than assuming it will be reversed automatically, and contact your card issuer if it is not."
   - order: 5
-    title: "Top up your Alipay balance (recommended)"
-    instruction: "While you can pay directly from your bound card, topping up your Alipay balance with yuan often gives better exchange rates. Go to Home → Top Up and follow the instructions."
+    title: "Top up your Alipay balance (optional)"
+    instruction: "You can pay directly from your bound card without topping up. Topping up means loading yuan into the app balance first and paying from that balance; it is an option, not a requirement. Go to Home → Top Up and follow the instructions. Exchange rates and any conversion fees depend on your card issuer and are not something this guide can promise either way."
   - order: 6
     title: "Pay in shops with QR code"
     instruction: "Most shops in China have an Alipay QR code at the counter. Open the app, tap \"Scan\" at the top of the Home screen, point your camera at the QR code, enter the amount, and confirm payment."
