@@ -7,7 +7,7 @@ import {
 } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://chinatravelguide.app";
+  const baseUrl = "https://easypandatrip.com";
   const now = new Date().toISOString();
 
   const staticPages = [

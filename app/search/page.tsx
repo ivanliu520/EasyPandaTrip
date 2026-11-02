@@ -13,7 +13,7 @@ export default function SearchPage() {
   return (
     <div className="container-page py-12 md:py-16">
       <h1 className="text-3xl md:text-4xl font-bold mb-3">
-        Search China Travel Guide
+        Search EasyPandaTrip
       </h1>
       <p className="text-[var(--text-muted)] mb-8">
         Find guides, problem solvers, and city tips. Try: &quot;how to use alipay&quot;,

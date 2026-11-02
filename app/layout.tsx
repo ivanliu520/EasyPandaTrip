@@ -15,10 +15,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chinatravelguide.app"),
+  metadataBase: new URL("https://easypandatrip.com"),
   title: {
-    default: "China Travel Guide — Practical Step-by-Step Guide for Foreign Travelers",
-    template: "%s | China Travel Guide",
+    default: "EasyPandaTrip — Practical Step-by-Step Guide for Foreign Travelers",
+    template: "%s | EasyPandaTrip",
   },
   description:
     "A practical, step-by-step guide for first-time international travelers in China. Alipay, WeChat Pay, internet, DiDi, metro, and more — explained clearly.",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "China for foreigners",
   ],
   openGraph: {
-    title: "China Travel Guide — Practical Step-by-Step Guide",
+    title: "EasyPandaTrip — Practical Step-by-Step Guide",
     description:
       "China is easier when you know how. Action-first guides for payments, internet, transport, and everyday tasks in China.",
     type: "website",
@@ -55,7 +55,7 @@ export default function RootLayout({
               className="font-bold text-lg tracking-tight hover:opacity-80 transition"
             >
               <span className="text-[var(--brand-primary)]">🇨🇳</span>
-              <span> China Travel Guide</span>
+              <span> EasyPandaTrip</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6 text-sm">
               <Link href="/guides" className="hover:text-[var(--brand-primary)] transition">
@@ -84,7 +84,7 @@ export default function RootLayout({
           <div className="container-page text-sm text-[var(--text-muted)]">
             <div className="flex flex-col md:flex-row justify-between gap-4">
               <div>
-                <p className="font-semibold text-[var(--foreground)]">China Travel Guide</p>
+                <p className="font-semibold text-[var(--foreground)]">EasyPandaTrip</p>
                 <p className="mt-1">Practical, step-by-step help for foreigners in China.</p>
               </div>
               <div className="flex flex-wrap gap-6">

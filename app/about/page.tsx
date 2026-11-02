@@ -7,7 +7,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="container-page py-12 md:py-16 max-w-3xl">
-      <h1 className="text-3xl md:text-5xl font-bold mb-6">About China Travel Guide</h1>
+      <h1 className="text-3xl md:text-5xl font-bold mb-6">About EasyPandaTrip</h1>
 
       <section className="mb-10">
         <h2 className="text-xl font-bold mb-3">Why this exists</h2>
