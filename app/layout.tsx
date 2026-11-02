@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import { MobileNav } from "@/components/MobileNav";
 import "./globals.css";
@@ -52,10 +53,16 @@ export default function RootLayout({
           <div className="container-page flex items-center justify-between h-16">
             <Link
               href="/"
-              className="font-bold text-lg tracking-tight hover:opacity-80 transition"
+              className="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-80 transition"
             >
-              <span className="text-[var(--brand-primary)]">🇨🇳</span>
-              <span> EasyPandaTrip</span>
+              <Image
+                src="/logo-mark.svg"
+                alt=""
+                width={28}
+                height={28}
+                priority
+              />
+              <span>EasyPandaTrip</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6 text-sm">
               <Link href="/guides" className="hover:text-[var(--brand-primary)] transition">
