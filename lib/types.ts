@@ -1,4 +1,4 @@
-// Core content types for China Travel Guide
+// Core content types for EasyPandaTrip
 
 export type ContentStatus = "draft" | "verified" | "stale" | "outdated";
 
