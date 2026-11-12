@@ -1,10 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   getPublicGuides,
   getPublicProblems,
   getPublicCities,
 } from "@/lib/content";
 import { CATEGORY_INFO } from "@/lib/types";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   const guides = getPublicGuides();
